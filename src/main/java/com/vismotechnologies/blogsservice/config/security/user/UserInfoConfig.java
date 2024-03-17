@@ -16,7 +16,7 @@ public class UserInfoConfig implements UserDetails {
     private List<GrantedAuthority> authorities;
 
     public UserInfoConfig(UserDetailsInfo userEntity) {
-        name=userEntity.getName();
+        name=userEntity.getEmail();
         password=userEntity.getPassward();
         authorities= Arrays.stream(userEntity.getRole().split(","))
                 .map(SimpleGrantedAuthority::new).collect(Collectors.toList());

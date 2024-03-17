@@ -28,6 +28,7 @@ public class UserService {
     }
 
     public ResponseEntity<List<UserDetailsInfo>> findAll() {
+
         return ResponseEntity.ok(userRepository.findAll());
     }
 

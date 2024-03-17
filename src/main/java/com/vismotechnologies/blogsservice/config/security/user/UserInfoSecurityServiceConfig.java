@@ -17,7 +17,7 @@ public class UserInfoSecurityServiceConfig implements UserDetailsService {
 
     @Override
     public UserInfoConfig loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserDetailsInfo> userEntity=userRepository.findByName(username);
+        Optional<UserDetailsInfo> userEntity=userRepository.findByEmail(username);
         return userEntity.map(UserInfoConfig::new)
                 .orElseThrow(() ->new UsernameNotFoundException("User not found" +  username));
 

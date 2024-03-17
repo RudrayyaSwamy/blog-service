@@ -15,10 +15,7 @@ import java.security.SignatureException;
 @RestControllerAdvice
 public class CustomExceptionHandler {
 
-    /* @ExceptionHandler({AuthenticationException.class})
-     public void handleAuthenticationException(AuthenticationException ae) {
-         throw ae;
-     }*/
+
     @ExceptionHandler(Exception.class)
     public ProblemDetail handleSecurityException(Exception ex) {
         ProblemDetail errorDetail = null;
