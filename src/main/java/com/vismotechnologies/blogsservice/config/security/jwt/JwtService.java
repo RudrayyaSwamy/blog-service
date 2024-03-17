@@ -1,4 +1,4 @@
-package com.vismotechnologies.blogsservice.config.jwt;
+package com.vismotechnologies.blogsservice.config.security.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -20,8 +20,8 @@ public class JwtService implements Serializable {
     public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
 
     public String generateToken(String username) {
-        HashMap<String, Object>  claims = new HashMap<>();
-        return createTocken(claims,username);
+        HashMap<String, Object> claims = new HashMap<>();
+        return createTocken(claims, username);
     }
 
     private String createTocken(HashMap<String, Object> claims, String username) {
@@ -29,12 +29,12 @@ public class JwtService implements Serializable {
                 .setClaims(claims)
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+1000*60*30))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30))
                 .signWith(getSignKey(), SignatureAlgorithm.HS384).compact();
     }
 
     private Key getSignKey() {
-        byte[] keyBytes= Decoders.BASE64.decode(SECRET);
+        byte[] keyBytes = Decoders.BASE64.decode(SECRET);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 

@@ -1,4 +1,4 @@
-package org.example.blogsservice;
+package com.vismotechnologies.blogsservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

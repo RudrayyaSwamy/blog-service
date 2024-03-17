@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "user_details", schema = "vtbloges", catalog = "")
-public class UserDetailsEntity {
+public class UserDetailsInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -28,10 +28,8 @@ public class UserDetailsEntity {
     @Basic
     @Column(name = "profile", nullable = true)
     private byte[] profile;
-    @OneToOne(mappedBy = "userDetailsByBlogId")
-    private BlogsEntity blogsById;
     @OneToMany(mappedBy = "userDetailsByUserId")
-    private Collection<CommentsDetailsEntity> commentsDetailsById;
+    private Collection<CommentsDetails> commentsDetailsById;
 
     public int getId() {
         return id;
@@ -85,7 +83,7 @@ public class UserDetailsEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserDetailsEntity that = (UserDetailsEntity) o;
+        UserDetailsInfo that = (UserDetailsInfo) o;
         return id == that.id && Objects.equals(name, that.name) && Objects.equals(email, that.email) && Objects.equals(passward, that.passward) && Objects.equals(role, that.role) && Arrays.equals(profile, that.profile);
     }
 
@@ -96,19 +94,11 @@ public class UserDetailsEntity {
         return result;
     }
 
-    public BlogsEntity getBlogsById() {
-        return blogsById;
-    }
-
-    public void setBlogsById(BlogsEntity blogsById) {
-        this.blogsById = blogsById;
-    }
-
-    public Collection<CommentsDetailsEntity> getCommentsDetailsById() {
+    public Collection<CommentsDetails> getCommentsDetailsById() {
         return commentsDetailsById;
     }
 
-    public void setCommentsDetailsById(Collection<CommentsDetailsEntity> commentsDetailsById) {
+    public void setCommentsDetailsById(Collection<CommentsDetails> commentsDetailsById) {
         this.commentsDetailsById = commentsDetailsById;
     }
 }

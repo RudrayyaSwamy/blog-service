@@ -1,4 +1,4 @@
-package com.vismotechnologies.blogsservice.controller;
+package com.vismotechnologies.blogsservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

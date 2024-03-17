@@ -1,6 +1,6 @@
-package com.vismotechnologies.blogsservice.config.jwt;
+package com.vismotechnologies.blogsservice.config.security.jwt;
 
-import com.vismotechnologies.blogsservice.config.UserInfoSecurityServiceConfig;
+import com.vismotechnologies.blogsservice.config.security.user.UserInfoSecurityServiceConfig;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,12 +10,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-@Component
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     @Autowired

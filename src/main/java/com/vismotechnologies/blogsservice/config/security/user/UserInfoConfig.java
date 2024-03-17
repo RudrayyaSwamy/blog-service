@@ -1,9 +1,10 @@
-package com.vismotechnologies.blogsservice.config;
+package com.vismotechnologies.blogsservice.config.security.user;
 
-import com.vismotechnologies.blogsservice.model.UserDetailsEntity;
+import com.vismotechnologies.blogsservice.model.UserDetailsInfo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -14,7 +15,7 @@ public class UserInfoConfig implements UserDetails {
     private String password;
     private List<GrantedAuthority> authorities;
 
-    public UserInfoConfig(UserDetailsEntity userEntity) {
+    public UserInfoConfig(UserDetailsInfo userEntity) {
         name=userEntity.getName();
         password=userEntity.getPassward();
         authorities= Arrays.stream(userEntity.getRole().split(","))
