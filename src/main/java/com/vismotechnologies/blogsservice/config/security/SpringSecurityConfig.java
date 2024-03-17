@@ -29,7 +29,7 @@ import java.util.List;
 @EnableWebSecurity
 public class SpringSecurityConfig { //extends WebSecurityConfigurerAdapter {
 
-    List<String> publicApis = List.of("/api/v1/auth/**", "/api/v1/blog/**","/api/v1/comment/**");
+    List<String> publicApis = List.of("/api/v1/auth/**", "/api/v1/blog/**","/api/v1/comment/**","/swagger-ui.html","/swagger-ui/**","/v3/**");
     List<String> privateApis = List.of("/api/v1/user/**", "/api/v1/admin/blog/**");
 
     @Autowired

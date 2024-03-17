@@ -23,16 +23,16 @@ DROP TABLE IF EXISTS `user_details`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_details` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `passward` varchar(1000) DEFAULT NULL,
   `role` varchar(45) DEFAULT NULL,
   `profile` blob,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `id_UNIQUE` (`user_id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `user_details` (
 
 LOCK TABLES `user_details` WRITE;
 /*!40000 ALTER TABLE `user_details` DISABLE KEYS */;
-INSERT INTO `user_details` VALUES (1,'Rudrayya15','rudrayya15@gmail.com','123','USER',NULL),(3,'Rudrayya14','rudrayya14@gmail.com','$2a$10$RNahh/l3H9KY0wvL1fx0/uCpIj.DoE4ZW5GvjlANTVJe48r3HDgxm','ADMIN',NULL),(4,'Rudrayya1','rudrayya1@gmail.com','$2a$10$cBf5QLa8sOPyw3WrDZ4R6OcUCBBIYjR0gDtR7yJAo7gXrVwrswsf2','ADMIN',NULL);
+INSERT INTO `user_details` VALUES (1,'Rudrayya15','rudrayya15@gmail.com','123','USER',NULL),(3,'Rudrayya14','rudrayya14@gmail.com','$2a$10$RNahh/l3H9KY0wvL1fx0/uCpIj.DoE4ZW5GvjlANTVJe48r3HDgxm','ADMIN',NULL),(4,'Rudrayya1','rudrayya1@gmail.com','$2a$10$cBf5QLa8sOPyw3WrDZ4R6OcUCBBIYjR0gDtR7yJAo7gXrVwrswsf2','ADMIN',NULL),(7,'Rudrayya1345','rudrayya156@gmail.com','$2a$10$XO4lSkmpKlw5pOaPZAuz/ebbnnntHtaXE0/NsuLonnsdV3LPkt1i2','ADMIN',NULL);
 /*!40000 ALTER TABLE `user_details` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-17 14:02:18
+-- Dump completed on 2024-03-18  0:54:18

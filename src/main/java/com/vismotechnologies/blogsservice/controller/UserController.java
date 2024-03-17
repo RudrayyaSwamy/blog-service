@@ -3,9 +3,12 @@ package com.vismotechnologies.blogsservice.controller;
 import com.vismotechnologies.blogsservice.config.security.jwt.JwtService;
 import com.vismotechnologies.blogsservice.model.AuthRequest;
 import com.vismotechnologies.blogsservice.model.AuthResp;
-import com.vismotechnologies.blogsservice.model.UserDetailsInfo;
+import com.vismotechnologies.blogsservice.entity.UserDetailsInfo;
+import com.vismotechnologies.blogsservice.model.UserDetailsInfoAdminModel;
 import com.vismotechnologies.blogsservice.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@Tag(name="User Controller")
 @RequestMapping("/api/v1")
 public class UserController {
 
@@ -45,27 +49,28 @@ public class UserController {
 
     @GetMapping("/user/findAllUsers")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<List<UserDetailsInfo>> findAllUsers() {
+    public ResponseEntity<List<UserDetailsInfoAdminModel>> findAllUsers() {
         System.out.println("findAllUsers");
         return userService.findAll();
     }
 
     @GetMapping("/user/findByName/{userName}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<Optional<UserDetailsInfo>> findAllUsers(@PathVariable String userName) {
+    public ResponseEntity<Optional<UserDetailsInfoAdminModel>> findAllUsers(@PathVariable String userName) {
         return userService.findByName(userName);
     }
 
     @GetMapping("/user/deleteByName/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public void deleteUserByName(@PathVariable int id) {
+    public ResponseEntity<String> deleteUserByName(@PathVariable int id) {
         System.out.println("delete");
         userService.deleteUserByName(id);
+        return new ResponseEntity<>("Resource deleted successfully", HttpStatus.OK);
     }
 
     @PutMapping("/user/editUser")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public UserDetailsInfo editUser(@RequestBody UserDetailsInfo user) {
+    public UserDetailsInfoAdminModel editUser(@RequestBody UserDetailsInfo user) {
         return userService.editUser(user);
     }
 

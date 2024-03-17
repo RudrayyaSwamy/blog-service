@@ -1,6 +1,6 @@
 package com.vismotechnologies.blogsservice.config.security.user;
 
-import com.vismotechnologies.blogsservice.model.UserDetailsInfo;
+import com.vismotechnologies.blogsservice.entity.UserDetailsInfo;
 import com.vismotechnologies.blogsservice.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -33,8 +33,8 @@ CREATE TABLE `comments_details` (
   KEY `user_id_idx` (`user_id`),
   KEY `blog_details_idx` (`blog_detail_id`),
   CONSTRAINT `blog_details` FOREIGN KEY (`blog_detail_id`) REFERENCES `blogs` (`blog_id`),
-  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user_details` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user_details` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +43,7 @@ CREATE TABLE `comments_details` (
 
 LOCK TABLES `comments_details` WRITE;
 /*!40000 ALTER TABLE `comments_details` DISABLE KEYS */;
+INSERT INTO `comments_details` VALUES (1,'hello',3,1,NULL),(2,'hello',3,2,NULL);
 /*!40000 ALTER TABLE `comments_details` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-17 14:02:18
+-- Dump completed on 2024-03-18  0:54:17

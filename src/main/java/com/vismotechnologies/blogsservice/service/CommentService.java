@@ -1,44 +1,49 @@
 package com.vismotechnologies.blogsservice.service;
 
 
-import com.vismotechnologies.blogsservice.model.CommentsDetails;
+import com.vismotechnologies.blogsservice.entity.CommentsDetails;
+import com.vismotechnologies.blogsservice.model.CommentsDetailsModel;
 import com.vismotechnologies.blogsservice.repo.CommentRepo;
+import com.vismotechnologies.blogsservice.utils.BlogUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class CommentService {
 
     private CommentRepo commentRepo;
+    private BlogUtils blogUtils;
 
     @GetMapping("/comment/findAllCommentsForPost/{blogsByBlogDetailId}")
-    public ResponseEntity<List<CommentsDetails>> findAllCommentsForPost(int blogDetailId) {
-        List<CommentsDetails>  commentsList= commentRepo.findAllByBlogDetailId(blogDetailId);
-        return ResponseEntity.ok(commentsList);
+    public ResponseEntity<Set<CommentsDetailsModel>> findAllCommentsForPost(int blogDetailId) {
+        Set<CommentsDetails> commentsList= commentRepo.findAllByBlogDetailId(blogDetailId);
+        return ResponseEntity.ok(commentsList.stream()
+                .map(CommentsDetailsModel::new).collect(Collectors.toSet()));
     }
 
     @GetMapping("/comment/findAllComments")
-    public ResponseEntity<List<CommentsDetails>> findAllComments() {
-        return ResponseEntity.ok(commentRepo.findAll());
+    public ResponseEntity<List<CommentsDetailsModel>> findAllComments() {
+        List<CommentsDetails> commentsDetailsList = commentRepo.findAll();
+        return ResponseEntity.ok(commentsDetailsList.stream()
+                .map(CommentsDetailsModel::new).collect(Collectors.toList()));
     }
 
     @PostMapping("/comment/saveComment")
     public CommentsDetails saveComment(@RequestBody CommentsDetails commentsDetails) {
-        commentsDetails.setCommentOn(Timestamp.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))));
+        commentsDetails.setCommentOn(blogUtils.getCurrentTimestamp());
         return commentRepo.save(commentsDetails);
     }
 
     @PutMapping("/comment/updateComment")
     public CommentsDetails updateComment(@RequestBody CommentsDetails commentsDetails) {
-        commentsDetails.setCommentOn(Timestamp.valueOf(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))));
+        commentsDetails.setCommentOn(blogUtils.getCurrentTimestamp());
         return commentRepo.save(commentsDetails);
     }
     @DeleteMapping("/comment/deleteComment/{id}")

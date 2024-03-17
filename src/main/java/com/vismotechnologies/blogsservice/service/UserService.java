@@ -1,6 +1,7 @@
 package com.vismotechnologies.blogsservice.service;
 
-import com.vismotechnologies.blogsservice.model.UserDetailsInfo;
+import com.vismotechnologies.blogsservice.entity.UserDetailsInfo;
+import com.vismotechnologies.blogsservice.model.UserDetailsInfoAdminModel;
 import com.vismotechnologies.blogsservice.repo.UserRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -22,14 +24,17 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public ResponseEntity<Optional<UserDetailsInfo>> findByName(String username) {
-        Optional<UserDetailsInfo> user = userRepository.findByName(username);
-        return ResponseEntity.ok(user);
+    public ResponseEntity<Optional<UserDetailsInfoAdminModel>> findByName(String username) {
+        UserDetailsInfo user = userRepository.findByName(username);
+        return ResponseEntity.ok(Optional.of(new UserDetailsInfoAdminModel(user)));
     }
 
-    public ResponseEntity<List<UserDetailsInfo>> findAll() {
-
-        return ResponseEntity.ok(userRepository.findAll());
+    public ResponseEntity<List<UserDetailsInfoAdminModel>> findAll() {
+        List<UserDetailsInfo>  userDetailsInfoList =userRepository.findAll();
+        return ResponseEntity.ok(
+                userDetailsInfoList.stream().map(UserDetailsInfoAdminModel::new)
+                        .collect(Collectors.toList())
+        );
     }
 
     public UserDetailsInfo save(UserDetailsInfo user) {
@@ -41,12 +46,13 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public UserDetailsInfo editUser(UserDetailsInfo user) {
+    public UserDetailsInfoAdminModel editUser(UserDetailsInfo user) {
         Optional<UserDetailsInfo> userModel = userRepository.findById(user.getId());
         if (userModel.isEmpty()) {
             throw new UsernameNotFoundException("User not found" + user.getName());
         }
         user.setPassward(userModel.get().getPassward());
-        return userRepository.save(user);
+        UserDetailsInfo userDetailsInfo = userRepository.save(user);
+        return new UserDetailsInfoAdminModel(userDetailsInfo);
     }
 }

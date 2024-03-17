@@ -31,7 +31,7 @@ CREATE TABLE `blogs` (
   `created_on` datetime DEFAULT NULL,
   `updated_on` datetime DEFAULT NULL,
   PRIMARY KEY (`blog_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_cs;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `blogs` (
 
 LOCK TABLES `blogs` WRITE;
 /*!40000 ALTER TABLE `blogs` DISABLE KEYS */;
+INSERT INTO `blogs` VALUES (1,'blog title','blog short description','blog body',3,'2024-03-17 16:34:55','2024-03-17 16:34:55'),(2,'blog title','blog short description','blog body',3,'2024-03-17 16:34:55','2024-03-17 16:34:55'),(3,'blog title','blog short description','blog body',3,'2024-03-17 16:34:55','2024-03-17 16:34:55'),(4,'blog title','blog short description','blog body',3,'2024-03-17 16:34:55','2024-03-17 16:34:55'),(5,'blog title 3','blog short description','blog body',3,'2024-03-17 16:34:55','2024-03-17 16:34:55'),(6,'blog title 3','blog short description','blog body',3,'2024-03-17 16:35:33','2024-03-17 16:35:33'),(7,'blog title 4','blog short description','blog body',3,'2024-03-17 16:36:41','2024-03-17 16:36:41');
 /*!40000 ALTER TABLE `blogs` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-17 14:02:18
+-- Dump completed on 2024-03-18  0:54:18

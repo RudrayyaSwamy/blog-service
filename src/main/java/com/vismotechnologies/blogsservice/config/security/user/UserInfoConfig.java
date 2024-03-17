@@ -1,6 +1,6 @@
 package com.vismotechnologies.blogsservice.config.security.user;
 
-import com.vismotechnologies.blogsservice.model.UserDetailsInfo;
+import com.vismotechnologies.blogsservice.entity.UserDetailsInfo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
