@@ -23,12 +23,13 @@ DROP TABLE IF EXISTS `comments_details`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `comments_details` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `comment_id` int NOT NULL AUTO_INCREMENT,
   `comment` varchar(2000) DEFAULT NULL,
   `user_id` int DEFAULT NULL,
   `blog_detail_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
+  `comment_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`comment_id`),
+  UNIQUE KEY `id_UNIQUE` (`comment_id`),
   KEY `user_id_idx` (`user_id`),
   KEY `blog_details_idx` (`blog_detail_id`),
   CONSTRAINT `blog_details` FOREIGN KEY (`blog_detail_id`) REFERENCES `blogs` (`blog_id`),
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-17  1:52:14
+-- Dump completed on 2024-03-17 13:13:01

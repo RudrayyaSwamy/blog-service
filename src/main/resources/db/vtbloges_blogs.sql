@@ -24,13 +24,14 @@ DROP TABLE IF EXISTS `blogs`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `blogs` (
   `blog_id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(1000) DEFAULT NULL,
-  `short_description` varchar(2000) DEFAULT NULL,
-  `body` longtext,
+  `title` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `short_description` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `body` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `user_id` int DEFAULT NULL,
-  PRIMARY KEY (`blog_id`),
-  UNIQUE KEY `id_UNIQUE` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `created_on` datetime DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`blog_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_as_cs;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-17  1:52:14
+-- Dump completed on 2024-03-17 13:13:01
